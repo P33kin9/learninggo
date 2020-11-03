@@ -17,11 +17,13 @@ import (
 //	"time"
 //)
 
-var palette = []color.Color{color.White, color.Black}
+//var palette = []color.Color{color.White, color.Black}
+var palette = []color.Color{color.White, color.RGBA{255, 145, 255, math.MaxUint8}}
 
 const (
 	whiteIndex = 0
 	blackIndex = 1
+	greenIndex = 2
 )
 
 func main() {
@@ -50,7 +52,7 @@ func lissajous(out io.Writer) {
 	freq := rand.Float64() * 3.0
 	anim := gif.GIF{LoopCount: nframes}
 	phase := 0.0
-	for i := 0; i < nframes; i++ {
+	for i, c := 0, 1; i < nframes; i++ {
 		rect := image.Rect(0, 0, 2*size+1, 2*size+1)
 		img := image.NewPaletted(rect, palette)
 		for t := 0.0; t < cycles*2*math.Pi; t += res {
@@ -58,6 +60,11 @@ func lissajous(out io.Writer) {
 			y := math.Sin(t*freq + phase)
 			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), blackIndex)
 		}
+		c++
+		if c >= len(palette) {
+			c = 1
+		}
+
 		phase += 0.1
 		anim.Delay = append(anim.Delay, delay)
 		anim.Image = append(anim.Image, img)
