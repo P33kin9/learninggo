@@ -17,16 +17,17 @@ func main() {
 		}
 		resp, err := http.Get(url)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
-			os.Exit(1)
+			fmt.Fprintf(os.Stderr, "http-get: %v\n", err)
+			os.Exit(10)
 		}
+		fmt.Printf("http-get: %v\n", resp.Status)
 		//		b, err := ioutil.ReadAll(resp.Body)
 		_, err = io.Copy(os.Stdout, resp.Body)
-		resp.Body.Close()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "fetch: reading %s: %v\n", url, err)
-			os.Exit(1)
+			os.Exit(10)
 		}
+		resp.Body.Close()
 		//fmt.Printf("%s", b)
 	}
 }
