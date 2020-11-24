@@ -23,12 +23,11 @@ func PopCount(x uint64) int {
 
 }
 
-func PopCountByBitShift(x uint64) int {
+func PopCountByBitClear(x uint64) int {
 	n := 0
-	for i := uint(0); i < 64; i++ {
-		if (x>>i)&1 != 0 {
-			n++
-		}
+	for x != 0 {
+		x = x & (x - 1)
+		n++
 	}
 	return n
 }

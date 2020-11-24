@@ -17,8 +17,8 @@ func TestPopCount(t *testing.T) {
 	assert(t, 32, popcount.PopCount(0x123456789ABCDEF))
 }
 
-func TestCountByBitShift(t *testing.T) {
-	assert(t, 32, popcount.PopCountByBitShift(0x123456789ABCDEF))
+func TestPopCountByBitClear(t *testing.T) {
+	assert(t, 32, popcount.PopCountByBitClear(0x123456789ABCDEF))
 }
 
 func BenchmarkPopCount(b *testing.B) {
@@ -27,8 +27,8 @@ func BenchmarkPopCount(b *testing.B) {
 	}
 }
 
-func BenchmarkPopCountByBitShift(b *testing.B) {
+func BenchmarkPopCountByBitClear(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		popcount.PopCountByBitShift(0x123456789ABCDEF)
+		popcount.PopCountByBitClear(0x123456789ABCDEF)
 	}
 }
