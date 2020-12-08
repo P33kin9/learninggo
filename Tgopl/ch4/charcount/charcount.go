@@ -42,4 +42,7 @@ func main() {
 			fmt.Printf("%d\t%d\n", i, n)
 		}
 	}
+	if invaild > 0 {
+		fmt.Printf("\n%d invalid UTF-8 characters\n", invaild)
+	}
 }
