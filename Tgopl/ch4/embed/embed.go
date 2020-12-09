@@ -16,11 +16,18 @@ type Wheel struct {
 
 func main() {
 	var w Wheel
-	w = Wheel{Circle{Point{X: 8, Y: 8}, 5}, 20}
+	//	w = Wheel{Circle{Point{X: 8, Y: 8}, 5}, 20}
+	w = Wheel{
+		Circle: Circle{
+			Point:  Point{X: 7, Y: 7},
+			Radius: 5,
+		},
+		Spokes: 20, // NOTE: trailing comma necessary here (and Radius)
+	}
 
 	fmt.Printf("%#v\n", w)
 
-	w.X = 42
+	w.X = 46
 
 	fmt.Printf("%#v\n", w)
 }
