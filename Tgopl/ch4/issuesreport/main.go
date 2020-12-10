@@ -38,6 +38,7 @@ func main() {
 	if err := report.Execute(os.Stdout, result); err != nil {
 		log.Fatal(err)
 	}
+	//	noMust()
 }
 
 //!-exec
