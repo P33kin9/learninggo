@@ -19,7 +19,7 @@ func main() {
 	x.UnionWith(&y)
 	fmt.Println(x.String())
 	fmt.Println(x.Len())
-	// x.Remove(9)
+	x.Remove(9)
 	z := x.Copy()
 	x.Clear()
 	fmt.Println(x.String())
