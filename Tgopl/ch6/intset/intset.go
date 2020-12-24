@@ -1,5 +1,5 @@
 // Package intset provides a set of inteers based on a bit vector.
-package main
+package intset
 
 import (
 	"bytes"
