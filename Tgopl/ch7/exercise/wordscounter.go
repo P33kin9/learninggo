@@ -10,6 +10,7 @@ func main() {
 	var c WordsCounter
 	fmt.Fprintf(&c, "hello world 123")
 	fmt.Println(c)
+
 }
 
 /*
