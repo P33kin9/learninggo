@@ -12,7 +12,8 @@ func CToF(c Celsius) Fahrenheit { return Fahrenheit(c*9.0/5.0 + 32.0) }
 
 func FToC(f Fahrenheit) Celsius { return Celsius((f - 32.0) * 5.0 / 9.0) }
 
-func (c Celsius) String() string { return fmt.Sprintf("%g°C", c) }
+func (c Celsius) String() string    { return fmt.Sprintf("%g°C", c) }
+func (f Fahrenheit) String() string { return fmt.Sprintf("%g°F", f) }
 
 /*
 //!+flagValue
@@ -30,6 +31,29 @@ type Value interface {
 // *celsiusFlag satisfies the flag.Value interface.
 
 type celsiusFlag struct{ Celsius }
+
+type fahrenheitFlag struct{ Fahrenheit }
+
+func (f *fahrenheitFlag) Set(s string) error {
+	var unit string
+	var value float64
+	fmt.Sscanf(s, "%f%s", &value, &unit) // no error check needed
+	switch unit {
+	case "F", "°F":
+		f.Fahrenheit = Fahrenheit(value)
+		return nil
+	case "C", "°C":
+		f.Fahrenheit = CToF(Celsius(value))
+		return nil
+	}
+	return fmt.Errorf("invalid temperature %q", s)
+}
+
+func FahrenheitFlag(name string, value Fahrenheit, usage string) *Fahrenheit {
+	f := fahrenheitFlag{value}
+	flag.CommandLine.Var(&f, name, usage)
+	return &f.Fahrenheit
+}
 
 func (f *celsiusFlag) Set(s string) error {
 	var unit string
