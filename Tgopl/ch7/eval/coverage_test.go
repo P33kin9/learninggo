@@ -18,8 +18,8 @@ func TestCoverage(t *testing.T) {
 		{"log(10)", nil, `unknow function "log"`},
 		{"sqrt(1,2)", nil, "call to sqrt has 2 args, want 1"},
 		{"sqrt(A /pi)", Env{"A": 87616, "pi": math.Pi}, "167"},
-		{"pow(x,3) + pow(y ,3)", Env{"x": 9, "y": 10}, "1729"},
-		{"5 / 9 * (F -32)", Env{"F": -40}, "-40"},
+		{"pow(x, 3) + pow(y, 3)", Env{"x": 9, "y": 10}, "1729"},
+		{"5 / 9 * (F - 32)", Env{"F": -40}, "-40"},
 	}
 
 	for _, test := range tests {
@@ -29,7 +29,7 @@ func TestCoverage(t *testing.T) {
 		}
 		if err != nil {
 			if err.Error() != test.want {
-				t.Errorf("%s: got %q", test.input, err, test.want)
+				t.Errorf("%s: got %q, want %q", test.input, err, test.want)
 			}
 			continue
 		}

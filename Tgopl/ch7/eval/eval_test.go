@@ -22,12 +22,12 @@ func TestEval(t *testing.T) {
 		//!-Eval
 		// additional tests that don't appear in the book
 		{"-1 + -x", Env{"x": 1}, "-2"},
-		{"-1  - x", Env{"x": 1}, "-2"},
+		{"-1 - x", Env{"x": 1}, "-2"},
 		//!+Eval
 	}
 	var prevExpr string
 	for _, test := range tests {
-		// print expr only when it changes.
+		// Print expr only when it changes.
 		if test.expr != prevExpr {
 			fmt.Printf("\n%s\n", test.expr)
 			prevExpr = test.expr
@@ -54,15 +54,15 @@ sqrt(A / pi)
 
 pow(x, 3) + pow(y, 3)
 	map[x:12 y:1] => 1729
-	map[x:=9 y:10] => 1729
+	map[x:9 y:10] => 1729
 
 5 / 9 * (F -32)
 	map[F:-40] => -40
 	map[F:32] => 0
 	map[F:212] => 100
-	//!output
+//!-output
 
-//Additional outputs that don't appear in the book.
+// Additional outputs that don't appear in the book.
 
 -1 - x
 	map[x:1] => -2
@@ -72,10 +72,10 @@ pow(x, 3) + pow(y, 3)
 
 func TestErrors(t *testing.T) {
 	for _, test := range []struct{ expr, wantErr string }{
-		{"x % 2", "unexpected'%'"},
+		{"x % 2", "unexpected '%'"},
 		{"math.Pi", "unexpected '.'"},
 		{"!true", "unexpected '!'"},
-		{`"hello"`, "unexpected'\"'"},
+		{`"hello"`, "unexpected '\"'"},
 		{"log(10)", `unknow function "log"`},
 		{"sqrt(1,2)", "call to sqrt has 2 args, want 1"},
 	} {
@@ -97,7 +97,7 @@ func TestErrors(t *testing.T) {
 
 /*
 //!+errors
-x % 2              unexpected '%'
+x % 2           unexpected '%'
 math.Pi		unexpected '.'
 !true		unexpected '!'
 "hello"		unexpected '"'

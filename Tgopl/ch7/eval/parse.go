@@ -16,8 +16,8 @@ type lexer struct {
 	token rune // current lookahead token
 }
 
-func (lex *lexer) next() { lex.token = lex.scan.Scan() }
-func (lex *lexer) text() { return lex.scan.TokenText() }
+func (lex *lexer) next()        { lex.token = lex.scan.Scan() }
+func (lex *lexer) text() string { return lex.scan.TokenText() }
 
 type lexPanic string
 
