@@ -14,11 +14,10 @@ package main
 
 import (
 	"bufio"
+	"cf/ch8/thumbnail"
 	"fmt"
 	"log"
 	"os"
-
-	"gopl.io/ch8/thumbnail"
 )
 
 func main() {
