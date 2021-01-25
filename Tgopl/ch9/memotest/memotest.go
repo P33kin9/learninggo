@@ -30,9 +30,9 @@ func incomingURLs() <-chan string {
 	ch := make(chan string)
 	go func() {
 		for _, url := range []string{
-			"http://goproxy.io",
-			"http://gopl.io",
-			"http://www.so.com",
+			"https://goproxy.io",
+			"https://gopl.io",
+			"https://www.so.com",
 			"http://www.baidu.com",
 			"https://www.sohu.com",
 			"https://www.sogou.com",
