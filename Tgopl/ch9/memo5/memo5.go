@@ -33,6 +33,12 @@ type request struct {
 type Memo struct{ requests chan request }
 
 // New returns a memoization of f. Clients must subsequently call Close.
+func New(f Func) *Memo {
+	memo := &Memo{requests: make(chan request)}
+	go memo.server(f)
+	return memo
+}
+
 func (memo *Memo) Get(key string) (interface{}, error) {
 	response := make(chan result)
 	memo.requests <- request{key, response}
