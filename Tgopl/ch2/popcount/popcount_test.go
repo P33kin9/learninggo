@@ -1,7 +1,7 @@
 package popcount_test
 
 import (
-	"cf/popcount"
+	"cf/ch2/popcount"
 	"reflect"
 	"testing"
 )
