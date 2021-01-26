@@ -1,4 +1,6 @@
-// (Package doc comment intentionally malformed to demonstrate golint.)
+// Package popcount (test golint ch2/popcount and modify comment)
+// modify: Jan 26 2021
+// Package doc comment intentionally malformed to demonstrate golint.
 package popcount
 
 // pc[i] is the population count of i.
