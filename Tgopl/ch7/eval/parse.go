@@ -99,7 +99,7 @@ func parseBinary(lex *lexer, prec1 int) Expr {
 func parseUnary(lex *lexer) Expr {
 	if lex.token == '+' || lex.token == '-' {
 		op := lex.token
-		lex.next()
+		lex.next() // consume '+' or '-'
 		return unary{op, parseUnary(lex)}
 	}
 	return parsePrimary(lex)
@@ -125,15 +125,16 @@ func parsePrimary(lex *lexer) Expr {
 				if lex.token != ',' {
 					break
 				}
-				lex.next() // consume','
+				lex.next() // consume ','
 			}
 			if lex.token != ')' {
-				msg := fmt.Sprintf("got %s, want')'", lex.describe())
+				msg := fmt.Sprintf("got %s, want ')'", lex.describe())
 				panic(lexPanic(msg))
 			}
 		}
 		lex.next() // consume ')'
 		return call{id, args}
+
 	case scanner.Int, scanner.Float:
 		f, err := strconv.ParseFloat(lex.text(), 64)
 		if err != nil {
@@ -141,8 +142,9 @@ func parsePrimary(lex *lexer) Expr {
 		}
 		lex.next() // consume number
 		return literal(f)
+
 	case '(':
-		lex.next() //consume '('
+		lex.next() // consume '('
 		e := parseExpr(lex)
 		if lex.token != ')' {
 			msg := fmt.Sprintf("got %s, want ')'", lex.describe())
