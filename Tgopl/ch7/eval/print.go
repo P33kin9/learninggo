@@ -17,8 +17,10 @@ func write(buf *bytes.Buffer, e Expr) {
 	switch e := e.(type) {
 	case literal:
 		fmt.Fprintf(buf, "%g", e)
+
 	case Var:
 		fmt.Fprintf(buf, "%s", e)
+
 	case unary:
 		fmt.Fprintf(buf, "(%c", e.op)
 		write(buf, e.x)
@@ -40,6 +42,7 @@ func write(buf *bytes.Buffer, e Expr) {
 			write(buf, arg)
 		}
 		buf.WriteByte(')')
+
 	default:
 		panic(fmt.Sprintf("unknow Expr: %T", e))
 	}
