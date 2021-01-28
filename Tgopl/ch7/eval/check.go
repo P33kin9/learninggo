@@ -35,7 +35,11 @@ func (b binary) Check(vars map[Var]bool) error {
 func (c call) Check(vars map[Var]bool) error {
 	arity, ok := numParams[c.fn]
 	if !ok {
-		return fmt.Errorf("call to %s has %d args, want %d", c.fn, len(c.args), arity)
+		return fmt.Errorf("unknown function %q", c.fn)
+	}
+	if len(c.args) != arity {
+		return fmt.Errorf("call to %s has %d args, want %d",
+			c.fn, len(c.args), arity)
 	}
 	for _, arg := range c.args {
 		if err := arg.Check(vars); err != nil {
