@@ -76,7 +76,7 @@ func TestErrors(t *testing.T) {
 		{"math.Pi", "unexpected '.'"},
 		{"!true", "unexpected '!'"},
 		{`"hello"`, "unexpected '\"'"},
-		{"log(10)", `unknow function "log"`},
+		{"log(10)", `unknown function "log"`},
 		{"sqrt(1, 2)", "call to sqrt has 2 args, want 1"},
 	} {
 		expr, err := Parse(test.expr)
