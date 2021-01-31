@@ -64,6 +64,12 @@ func display(path string, v reflect.Value) {
 			display(fmt.Sprintf("%s[%s]", path,
 				formatAtom(key)), v.MapIndex(key))
 		}
+	case reflect.Ptr:
+		if v.IsNil() {
+			fmt.Printf("%s = nil\n", path)
+		} else {
+			display(fmt.Sprintf("(*%s)", path), v.Elem())
+		}
 	case reflect.Interface:
 		if v.IsNil() {
 			fmt.Printf("%s = nil\n", path)
