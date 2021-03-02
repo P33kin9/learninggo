@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+
 	"goination/ch2/sample/search"
 	"log"
 	"net/http"
@@ -15,12 +16,11 @@ type (
 	// in the rss document.
 	item struct {
 		XMLName     xml.Name `xml:"item"`
-		PubDate     string   `xml:"PubDate"`
+		PubDate     string   `xml:"pubDate"`
 		Title       string   `xml:"title"`
 		Description string   `xml:"description"`
 		Link        string   `xml:"link"`
 		GUID        string   `xml:"guid"`
-		GeoRssPoint string   `xml:"georss:point"`
 	}
 
 	// image defines the fields associated with the image tag
@@ -35,18 +35,14 @@ type (
 	// channel defines the fields associated with the channel tag
 	// in the rss document.
 	channel struct {
-		XMLName        xml.Name `xml:"channel"`
-		Title          string   `xml:"title"`
-		Description    string   `xml:"description"`
-		Link           string   `xml:"link"`
-		PubDate        string   `xml:"pubDate"`
-		LastBuildDate  string   `xml:"lastBuildDate"`
-		TTL            string   `xml:"ttl"`
-		Language       string   `xml:"language"`
-		ManagingEditor string   `xml:"managingEditor"`
-		WebMaster      string   `xml:"webMaster"`
-		Image          image    `xml:"image"`
-		Item           []item   `xml:"item"`
+		XMLName       xml.Name `xml:"channel"`
+		Title         string   `xml:"title"`
+		Description   string   `xml:"description"`
+		Link          string   `xml:"link"`
+		LastBuildDate string   `xml:"lastBuildDate"`
+		Language      string   `xml:"language"`
+		Image         image    `xml:"image"`
+		Item          []item   `xml:"item"`
 	}
 
 	// rssDocument defines the fields associated with the rss document.
@@ -89,6 +85,20 @@ func (m rssMatcher) Search(feed *search.Feed, searchTerm string) ([]*search.Resu
 			results = append(results, &search.Result{
 				Field:   "Title",
 				Content: channelItem.Title,
+			})
+		}
+
+		// Check the description for the search term.
+		matched, err = regexp.MatchString(searchTerm, channelItem.Description)
+		if err != nil {
+			return nil, err
+		}
+
+		// If we found a match save the result.
+		if matched {
+			results = append(results, &search.Result{
+				Field:   "Description",
+				Content: channelItem.Description,
 			})
 		}
 
