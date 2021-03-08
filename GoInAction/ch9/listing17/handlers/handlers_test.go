@@ -19,7 +19,7 @@ func init() {
 func TestSendJSON(t *testing.T) {
 	t.Log("Given the need to test the SendJSON endpoint.")
 	{
-		req, err := http.NewRequest("GET", "sendjson", nil)
+		req, err := http.NewRequest("GET", "/sendjson", nil)
 		if err != nil {
 			t.Fatal("\t\tShould be able to create a request.",
 				ballotX, err)
