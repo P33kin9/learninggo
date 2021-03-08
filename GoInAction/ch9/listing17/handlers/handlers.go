@@ -8,7 +8,7 @@ import (
 
 // Routes sets the routes for the web service.
 func Routes() {
-	http.HandleFunc("sendjson", SendJSON)
+	http.HandleFunc("/sendjson", SendJSON)
 }
 
 // SendJSON returns a simple JSON document.
