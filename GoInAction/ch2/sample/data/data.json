@@ -3,5 +3,10 @@
 	"site": "npr",
 	"link":"http://www.npr.org/rss/rss.php?id=1001",
 	"type": "rss"
+},
+{
+	"site": "ardanlabs",
+	"link": "https://www.ardanlabs.com/blog/index.xml",
+	"type": "rss"
 }
 ]
