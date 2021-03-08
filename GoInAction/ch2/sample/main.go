@@ -15,5 +15,5 @@ func init() {
 
 // main is the entry point for the progam.
 func main() {
-	search.Run("[p|P]resident")
+	search.Run("[p|P]resident|Go")
 }
