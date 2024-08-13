@@ -1,13 +1,13 @@
 package display
 
 import (
-	"cf/ch7/eval"
 	"io"
 	"net"
 	"os"
 	"reflect"
 	"sync"
 	"testing"
+	"tgopl/ch7/eval"
 )
 
 // NOTE: we can't use !+..!- comment to except these tests

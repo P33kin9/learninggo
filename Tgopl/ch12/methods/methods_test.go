@@ -1,8 +1,8 @@
 package methods_test
 
 import (
-	"cf/ch12/methods"
 	"strings"
+	"tgopl/ch12/methods"
 	"time"
 )
 

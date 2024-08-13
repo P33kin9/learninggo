@@ -1,9 +1,9 @@
 package format_test
 
 import (
-	"cf/ch12/format"
 	"fmt"
 	"testing"
+	"tgopl/ch12/format"
 	"time"
 )
 

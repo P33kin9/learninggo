@@ -2,10 +2,10 @@
 package main
 
 import (
-	"cf/tempconv"
 	"fmt"
 	"os"
 	"strconv"
+	"tgopl/tempconv"
 )
 
 func main() {
@@ -15,6 +15,7 @@ func main() {
 			fmt.Fprintf(os.Stderr, "cf: %v\n", err)
 			os.Exit(1)
 		}
+
 		f := tempconv.Fahrenheit(t)
 		c := tempconv.Celsius(t)
 		fmt.Printf("%s = %s, %s = %s\n",
