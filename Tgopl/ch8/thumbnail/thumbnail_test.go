@@ -7,14 +7,14 @@ import (
 	"log"
 	"os"
 	"sync"
-   _ "tgopl/ch8/thumbnail"
+   "tgopl/ch8/thumbnail"
 )
 
 // !+1
 // makeThumbnails make thumbnails of the specified files.
 func makeThumbnails(filenames []string) {
 	for _, f := range filenames {
-		if _, err := ImageFile(f); err != nil {
+		if _, err := thumbnail.ImageFile(f); err != nil {
 			log.Println(err)
 		}
 	}
@@ -26,7 +26,7 @@ func makeThumbnails(filenames []string) {
 // NOTE: incorrect!
 func makeThumbnails2(filenames []string) {
 	for _, f := range filenames {
-		go ImageFile(f) // NOTE: ignoring errors
+		go thumbnail.ImageFile(f) // NOTE: ignoring errors
 	}
 }
 
@@ -38,7 +38,7 @@ func makeThumbnails3(filenames []string) {
 	ch := make(chan struct{})
 	for _, f := range filenames {
 		go func(f string) {
-			ImageFile(f) // NOTE: ignoring errors
+			thumbnail.ImageFile(f) // NOTE: ignoring errors
 			ch <- struct{}{}
 		}(f)
 	}
@@ -59,7 +59,7 @@ func makeThumbnails4(filenames []string) error {
 
 	for _, f := range filenames {
 		go func(f string) {
-			_, err := ImageFile(f)
+			_, err := thumbnail.ImageFile(f)
 			errors <- err
 		}(f)
 	}
