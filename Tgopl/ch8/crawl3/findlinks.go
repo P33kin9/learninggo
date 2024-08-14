@@ -6,7 +6,7 @@
 package main
 
 import (
-	"cf/ch5/links"
+	"tgopl/ch5/links"
 	"fmt"
 	"log"
 	"os"

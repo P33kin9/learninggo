@@ -1,7 +1,7 @@
 package main
 
 import (
-	"cf/ch7/eval"
+	"tgopl/ch7/eval"
 	"fmt"
 	"io"
 	"log"

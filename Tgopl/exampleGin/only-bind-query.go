@@ -13,11 +13,11 @@ type Person2 struct {
 
 func main() {
 	route := gin.Default()
-	route.Any("/testing", startPage)
+	route.Any("/testing", startPage1)
 	route.Run(":8085")
 }
 
-func startPage(c *gin.Context) {
+func startPage1(c *gin.Context) {
 	var person Person2
 	if c.ShouldBindQuery(&person) == nil {
 		log.Println("====Only By Query String=====")

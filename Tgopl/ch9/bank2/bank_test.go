@@ -1,7 +1,7 @@
 package bank_test
 
 import (
-	bank "cf/ch9/bank2"
+	bank "tgopl/ch9/bank2"
 	"sync"
 	"testing"
 )

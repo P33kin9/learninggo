@@ -1,7 +1,7 @@
 package cake_test
 
 import (
-	"cf/ch8/cake"
+	"tgopl/ch8/cake"
 	"testing"
 	"time"
 )

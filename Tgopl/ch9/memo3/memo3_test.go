@@ -1,8 +1,8 @@
 package memo_test
 
 import (
-	memo "cf/ch9/memo3"
-	"cf/ch9/memotest"
+	memo "tgopl/ch9/memo3"
+	"tgopl/ch9/memotest"
 	"testing"
 )
 
