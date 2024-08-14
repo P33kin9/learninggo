@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	db := database{map[string]dollars{"shoes": 50, "socks": 5}, sync.Mutex{}}
+	db := databaseOne{map[string]dollars{"shoes": 50, "socks": 5}, sync.Mutex{}}
 	http.HandleFunc("/list", db.list)
 	http.HandleFunc("/price", db.price)
 	http.HandleFunc("/update", db.update)
@@ -22,12 +22,12 @@ type dollars float32
 
 func (d dollars) String() string { return fmt.Sprintf("$%.2f", d) }
 
-type database struct {
+type databaseOne struct {
 	R     map[string]dollars
 	mutex sync.Mutex
 }
 
-func (db database) list(w http.ResponseWriter, req *http.Request) {
+func (db databaseOne) list(w http.ResponseWriter, req *http.Request) {
 	var shopList = template.Must(template.New("shopList").Parse(`
 	<h1>shopList</h1>
 	<table>
@@ -59,7 +59,7 @@ func (db database) list(w http.ResponseWriter, req *http.Request) {
 
 }
 
-func (db database) update(w http.ResponseWriter, req *http.Request) {
+func (db databaseOne) update(w http.ResponseWriter, req *http.Request) {
 	db.mutex.Lock()
 	defer db.mutex.Unlock()
 
@@ -75,7 +75,7 @@ func (db database) update(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func (db database) delete(w http.ResponseWriter, req *http.Request) {
+func (db databaseOne) delete(w http.ResponseWriter, req *http.Request) {
 	db.mutex.Lock()
 	defer db.mutex.Unlock()
 
@@ -84,7 +84,7 @@ func (db database) delete(w http.ResponseWriter, req *http.Request) {
 	fmt.Fprint(w, "Success")
 }
 
-func (db database) price(w http.ResponseWriter, req *http.Request) {
+func (db databaseOne) price(w http.ResponseWriter, req *http.Request) {
 	item := req.URL.Query().Get("item")
 	if price, ok := db.R[item]; ok {
 		fmt.Fprintf(w, "%s\n", price)

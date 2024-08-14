@@ -13,10 +13,10 @@ func main() {
 		fmt.Fprintf(os.Stderr, "findtexts: %v\n", err)
 		os.Exit(1)
 	}
-	visit(doc)
+	visit3(doc)
 }
 
-func visit(n *html.Node) {
+func visit3(n *html.Node) {
 	if n != nil && n.Type == html.ElementNode {
 		if n.Data == "script" || n.Data == "style" {
 			return
@@ -26,6 +26,6 @@ func visit(n *html.Node) {
 		fmt.Println(n.Data)
 	}
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		visit(c)
+		visit3(c)
 	}
 }

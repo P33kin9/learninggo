@@ -17,9 +17,9 @@ func main() {
 	log.Fatal(http.ListenAndServe("localhost:8000", nil))
 }
 
-type dollars float32
+type dollars1 float32
 
-func (d dollars) String() string { return fmt.Sprintf("$%.2f", d) }
+func (d dollars1) String() string { return fmt.Sprintf("$%.2f", d) }
 
 type database struct {
 	R     map[string]dollars
