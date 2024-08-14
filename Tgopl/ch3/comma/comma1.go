@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	fmt.Println(comma("1234567890"))
+	fmt.Println(comma1("1234567890"))
 }
 
-func comma(s string) string {
+func comma1(s string) string {
 	var newByte byte = ','
 	n := len(s)
 	buf := bytes.NewBuffer([]byte{})

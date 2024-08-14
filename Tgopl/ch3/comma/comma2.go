@@ -7,10 +7,10 @@ import (
 )
 
 func main() {
-	fmt.Println(comma(-1234567.809))
+	fmt.Println(comma2(-1234567.809))
 }
 
-func comma(str float64) string {
+func comma2(str float64) string {
 	s := fmt.Sprintf("%.3f", str)
 	var end string
 	if dot := strings.LastIndex(s, "."); dot >= 0 {

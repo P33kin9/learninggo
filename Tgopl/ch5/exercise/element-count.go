@@ -14,17 +14,17 @@ func main() {
 		os.Exit(1)
 	}
 	elements := map[string]int{}
-	visit(elements, doc)
+	visit1(elements, doc)
 	for elem, count := range elements {
 		fmt.Printf("%s\t%d\n", elem, count)
 	}
 }
 
-func visit(e map[string]int, n *html.Node) {
+func visit1(e map[string]int, n *html.Node) {
 	if n.Type == html.ElementNode {
 		e[n.Data]++
 	}
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		visit(e, c)
+		visit1(e, c)
 	}
 }

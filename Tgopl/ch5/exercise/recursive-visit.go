@@ -13,13 +13,13 @@ func main() {
 		fmt.Fprintf(os.Stderr, "findlinks1: %v\n", err)
 		os.Exit(1)
 	}
-	for _, link := range visit(nil, doc) {
+	for _, link := range visit2(nil, doc) {
 		fmt.Println(link)
 	}
 }
 
 // visit appends to links each link found in n and returns the result.
-func visit(links []string, n *html.Node) []string {
+func visit2(links []string, n *html.Node) []string {
 	if n == nil {
 		return links
 	}
@@ -34,5 +34,5 @@ func visit(links []string, n *html.Node) []string {
 	//	links = visit(links, n.FirstChild)
 	//	links = visit(links, n.NextSibling)
 	//	return links
-	return visit(visit(links, n.FirstChild), n.NextSibling)
+	return visit2(visit2(links, n.FirstChild), n.NextSibling)
 }
