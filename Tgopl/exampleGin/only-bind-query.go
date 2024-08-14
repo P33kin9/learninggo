@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Person struct {
+type Person3 struct {
 	Name    string `form:"name"`
 	Address string `form:"address"`
 }
@@ -18,7 +18,7 @@ func main() {
 }
 
 func startPage(c *gin.Context) {
-	var person Person
+	var person Person3
 	if c.ShouldBindQuery(&person) == nil {
 		log.Println("====Only By Query String=====")
 		log.Println(person.Name)

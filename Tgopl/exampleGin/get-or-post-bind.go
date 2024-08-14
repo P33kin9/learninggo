@@ -15,7 +15,7 @@ import (
 // -F "name=John" -F "address=123 Main St" \
 // -F "birthday=2000-01-01" -F "createTime=1630385117000000000" \
 // -F "unixTime=1630385117"
-type Person struct {
+type Person3 struct {
 	Name       string    `form:"name"`
 	Address    string    `form:"address"`
 	Birthday   time.Time `form:"birthday" time_format:"2006-01-02" time_utc:"1"`
@@ -31,7 +31,7 @@ func main() {
 }
 
 func startPage(c *gin.Context) {
-	var person Person
+	var person Person3
 
 	if c.ShouldBind(&person) == nil {
 		log.Println(person.Name)
