@@ -4,17 +4,17 @@
 package thumbnail_test
 
 import (
-	"cf/ch8/thumbnail"
 	"log"
 	"os"
 	"sync"
+   _ "tgopl/ch8/thumbnail"
 )
 
-//!+1
+// !+1
 // makeThumbnails make thumbnails of the specified files.
 func makeThumbnails(filenames []string) {
 	for _, f := range filenames {
-		if _, err := thumbnail.ImageFile(f); err != nil {
+		if _, err := ImageFile(f); err != nil {
 			log.Println(err)
 		}
 	}
@@ -22,11 +22,11 @@ func makeThumbnails(filenames []string) {
 
 //!-1
 
-//!+2
+// !+2
 // NOTE: incorrect!
 func makeThumbnails2(filenames []string) {
 	for _, f := range filenames {
-		go thumbnail.ImageFile(f) // NOTE: ignoring errors
+		go ImageFile(f) // NOTE: ignoring errors
 	}
 }
 
@@ -38,7 +38,7 @@ func makeThumbnails3(filenames []string) {
 	ch := make(chan struct{})
 	for _, f := range filenames {
 		go func(f string) {
-			thumbnail.ImageFile(f) // NOTE: ignoring errors
+			ImageFile(f) // NOTE: ignoring errors
 			ch <- struct{}{}
 		}(f)
 	}
@@ -51,7 +51,7 @@ func makeThumbnails3(filenames []string) {
 
 //!-3
 
-//!+4
+// !+4
 // makeThumbnails4 makes thumbnails for the specified files in parallel.
 // It returns an error if any step failed.
 func makeThumbnails4(filenames []string) error {
@@ -59,7 +59,7 @@ func makeThumbnails4(filenames []string) error {
 
 	for _, f := range filenames {
 		go func(f string) {
-			_, err := thumbnail.ImageFile(f)
+			_, err := ImageFile(f)
 			errors <- err
 		}(f)
 	}
@@ -75,7 +75,7 @@ func makeThumbnails4(filenames []string) error {
 
 //!-4
 
-//!+5
+// !+5
 // makeThumbnails5 makes thumbnails for the specified files in paralls.
 // It returns the generated file names in an arbitray order,
 // or an error if any step failed.
@@ -89,7 +89,7 @@ func makeThumbnails5(filenames []string) (thumbnails []string, err error) {
 	for _, f := range filenames {
 		go func(f string) {
 			var it item
-			it.thumbnail, it.err = thumbnail.ImageFile(f)
+			it.thumbnail, it.err = ImageFile(f)
 			ch <- it
 		}(f)
 	}
@@ -107,7 +107,7 @@ func makeThumbnails5(filenames []string) (thumbnails []string, err error) {
 
 //!-5
 
-//!+6
+// !+6
 // makeThumbnails6 makes thumbnails for each file received from the channel.
 // It returns the number of bytes occupied by the files it creates.
 func makeThumbnails6(filenames <-chan string) int64 {
@@ -118,7 +118,7 @@ func makeThumbnails6(filenames <-chan string) int64 {
 		// worker
 		go func(f string) {
 			defer wg.Done()
-			thumb, err := thumbnail.ImageFile(f)
+			thumb, err := ImageFile(f)
 			if err != nil {
 				log.Println(err)
 				return

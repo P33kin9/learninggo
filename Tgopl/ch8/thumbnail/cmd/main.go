@@ -6,18 +6,18 @@
 // this:
 //
 // Run with:
+//
 //	$ go run $GOPATH/src/cf/ch8/thumbnail/main.go
 //	foo.jpeg
 //	^D
-//
 package main
 
 import (
 	"bufio"
-	"cf/ch8/thumbnail"
 	"fmt"
 	"log"
 	"os"
+	"tgopl/ch8/thumbnail"
 )
 
 func main() {
