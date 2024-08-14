@@ -89,7 +89,7 @@ func makeThumbnails5(filenames []string) (thumbnails []string, err error) {
 	for _, f := range filenames {
 		go func(f string) {
 			var it item
-			it.thumbnail, it.err = ImageFile(f)
+			it.thumbnail, it.err = thumbnail.ImageFile(f)
 			ch <- it
 		}(f)
 	}
@@ -118,7 +118,7 @@ func makeThumbnails6(filenames <-chan string) int64 {
 		// worker
 		go func(f string) {
 			defer wg.Done()
-			thumb, err := ImageFile(f)
+			thumb, err := thumbnail.ImageFile(f)
 			if err != nil {
 				log.Println(err)
 				return
