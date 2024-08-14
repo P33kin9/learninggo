@@ -7,7 +7,8 @@ import (
 	"log"
 	"os"
 	"sync"
-   "tgopl/ch8/thumbnail"
+	"testing"
+	"tgopl/ch8/thumbnail"
 )
 
 // !+1
@@ -142,3 +143,58 @@ func makeThumbnails6(filenames <-chan string) int64 {
 }
 
 //!-6
+
+//  Test Functions
+
+// TestMakeThumbnails tests makeThumbnails function
+func TestMakeThumbnails(t *testing.T) {
+	files := []string{"file1.jpg", "file2.jpg", "file3.jpg"}
+	makeThumbnails(files)
+}
+
+// TestMakeThumbnails2 tests makeThumbnails2 function
+func TestMakeThumbnails2(t *testing.T) {
+	files := []string{"file1.jpg", "file2.jpg", "file3.jpg"}
+	makeThumbnails2(files)
+}
+
+// TestMakeThumbnails3 tests makeThumbnails3 function
+func TestMakeThumbnails3(t *testing.T) {
+	files := []string{"file1.jpg", "file2.jpg", "file3.jpg"}
+	makeThumbnails3(files)
+}
+
+// TestMakeThumbnails4 tests makeThumbnails4 function
+func TestMakeThumbnails4(t *testing.T) {
+	files := []string{"file1.jpg", "file2.jpg", "file3.jpg"}
+	err := makeThumbnails4(files)
+	if err != nil {
+		t.Fatalf("makeThumbnails4 failed: %v", err)
+	}
+}
+
+// TestMakeThumbnails5 tests makeThumbnails5 function
+func TestMakeThumbnails5(t *testing.T) {
+	files := []string{"file1.jpg", "file2.jpg", "file3.jpg"}
+	thumbnails, err := makeThumbnails5(files)
+	if err != nil {
+		t.Fatalf("makeThumbnails5 failed: %v", err)
+	}
+	if len(thumbnails) != len(files) {
+		t.Fatalf("makeThumbnails5 returned wrong number of thumbnails: got %d, want %d", len(thumbnails), len(files))
+	}
+}
+
+// TestMakeThumbnails6 tests makeThumbnails6 function
+func TestMakeThumbnails6(t *testing.T) {
+	files := make(chan string, 3)
+	files <- "file1.jpg"
+	files <- "file2.jpg"
+	files <- "file3.jpg"
+	close(files)
+
+	totalSize := makeThumbnails6(files)
+	if totalSize == 0 {
+		t.Fatalf("makeThumbnails6 returned zero size")
+	}
+}
