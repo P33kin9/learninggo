@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-type Shape interface {
+type Shape1 interface {
 	Area() float64
 }
 
@@ -14,7 +14,7 @@ type Rectangle struct {
 func (r Rectangle) Area() float64 {
 	return r.Width * r.Height
 }
-func calculationArea(s Shape) {
+func calculationArea(s Shape1) {
 	fmt.Println("Area: ", s.Area())
 }
 

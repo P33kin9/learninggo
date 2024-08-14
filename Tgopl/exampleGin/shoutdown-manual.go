@@ -24,7 +24,7 @@ func main() {
 		Handler: router,
 	}
 	go func() {
-		if err := srv.ListenAndServe(); err != nil && http.ErrServerClosed {
+		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)
 		}
 	}()

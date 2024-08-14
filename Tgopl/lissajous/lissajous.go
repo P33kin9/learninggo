@@ -1,47 +1,45 @@
-package lissajous
+package main
 
 import (
 	"image"
 	"image/color"
 	"image/gif"
 	"io"
+	"log"
 	"math"
 	"math/rand"
+	"net/http"
 	"os"
 	"time"
 )
 
-import (
-	"log"
-	"net/http"
-	//	"time"
-)
+//	"time"
 
-//var palette = []color.Color{color.White, color.Black}
-var palette = []color.Color{color.White, color.RGBA{255, 145, 255, math.MaxUint8}}
+// var palette = []color.Color{color.White, color.Black}
+var palette1 = []color.Color{color.White, color.RGBA{255, 145, 255, math.MaxUint8}}
 
 const (
-	whiteIndex = 0
-	blackIndex = 1
-	greenIndex = 2
+	whiteIndex1 = 0
+	blackIndex1 = 1
+	greenIndex1 = 2
 )
 
 func main() {
-	rand.Seed(time.Now().UTC().UnixNano())
+	rand.New(rand.NewSource(time.Now().UTC().UnixNano()))
 
 	if len(os.Args) > 1 && os.Args[1] == "web" {
 		handler := func(w http.ResponseWriter, r *http.Request) {
-			lissajous(w)
+			lissajous1(w)
 		}
 		http.HandleFunc("/", handler)
 
 		log.Fatal(http.ListenAndServe("localhost:8000", nil))
 		return
 	}
-	lissajous(os.Stdout)
+	lissajous1(os.Stdout)
 }
 
-func lissajous(out io.Writer) {
+func lissajous1(out io.Writer) {
 	const (
 		cycles  = 5
 		res     = 0.001
