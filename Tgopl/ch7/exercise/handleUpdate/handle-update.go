@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	db := database{map[string]dollars{"shoes": 50, "socks": 5}, sync.Mutex{}}
+	db := database{map[string]dollars1{"shoes": 50, "socks": 5}, sync.Mutex{}}
 	http.HandleFunc("/list", db.list)
 	http.HandleFunc("/price", db.price)
 	http.HandleFunc("/update", db.update)
@@ -22,17 +22,17 @@ type dollars1 float32
 func (d dollars1) String() string { return fmt.Sprintf("$%.2f", d) }
 
 type database struct {
-	R     map[string]dollars
+	R     map[string]dollars1
 	mutex sync.Mutex
 }
 
-func (db database) list(w http.ResponseWriter, req *http.Request) {
+func (db *database) list(w http.ResponseWriter, req *http.Request) {
 	for item, price := range db.R {
 		fmt.Fprintf(w, "%s: %s\n", item, price)
 	}
 }
 
-func (db database) update(w http.ResponseWriter, req *http.Request) {
+func (db *database) update(w http.ResponseWriter, req *http.Request) {
 	db.mutex.Lock()
 	defer db.mutex.Unlock()
 
@@ -43,12 +43,12 @@ func (db database) update(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Fprint(w, "invalid price")
 	} else {
-		db.R[item] = dollars(p)
+		db.R[item] = dollars1(p)
 		fmt.Fprint(w, "Update price success")
 	}
 }
 
-func (db database) delete(w http.ResponseWriter, req *http.Request) {
+func (db *database) delete(w http.ResponseWriter, req *http.Request) {
 	db.mutex.Lock()
 	defer db.mutex.Unlock()
 
@@ -57,7 +57,7 @@ func (db database) delete(w http.ResponseWriter, req *http.Request) {
 	fmt.Fprint(w, "Success")
 }
 
-func (db database) price(w http.ResponseWriter, req *http.Request) {
+func (db *database) price(w http.ResponseWriter, req *http.Request) {
 	item := req.URL.Query().Get("item")
 	if price, ok := db.R[item]; ok {
 		fmt.Fprintf(w, "%s\n", price)
