@@ -17,7 +17,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"tgopl/ch8/thumbnail"
+	"tgopl/back/ch8/thumbnail"
 )
 
 func main() {

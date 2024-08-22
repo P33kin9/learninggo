@@ -1,7 +1,7 @@
 package main
 
 import (
-	"tgopl/ch7/tempconv"
+	"tgopl/back/ch7/tempconv"
 	"flag"
 	"fmt"
 )

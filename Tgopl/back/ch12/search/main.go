@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"tgopl/ch12/params" //!+
+	"tgopl/back/ch12/params" //!+
 )
 
 // search implements the /search URL endpoint.

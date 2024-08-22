@@ -8,7 +8,7 @@ import (
 	"os"
 	"sync"
 	"testing"
-	"tgopl/ch8/thumbnail"
+	"tgopl/back/ch8/thumbnail"
 )
 
 // !+1

@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"sync"
 	"testing"
-	"tgopl/ch7/eval"
+	"tgopl/back/ch7/eval"
 )
 
 // NOTE: we can't use !+..!- comment to except these tests

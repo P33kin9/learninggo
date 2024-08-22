@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"tgopl/tempconv"
+	"tgopl/back/tempconv"
 )
 
 func main() {

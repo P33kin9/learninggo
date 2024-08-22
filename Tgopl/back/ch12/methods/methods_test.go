@@ -2,7 +2,7 @@ package methods_test
 
 import (
 	"strings"
-	"tgopl/ch12/methods"
+	"tgopl/back/ch12/methods"
 	"time"
 )
 

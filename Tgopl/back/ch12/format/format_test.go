@@ -3,7 +3,7 @@ package format_test
 import (
 	"fmt"
 	"testing"
-	"tgopl/ch12/format"
+	"tgopl/back/ch12/format"
 	"time"
 )
 

@@ -2,7 +2,7 @@
 package main
 
 import (
-	"tgopl/ch5/links"
+	"tgopl/back/ch5/links"
 	"fmt"
 	"log"
 	"os"
