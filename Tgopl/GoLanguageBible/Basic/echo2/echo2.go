@@ -13,3 +13,9 @@ func main() {
 	}
 	fmt.Println(s)
 }
+// exercise 1.2
+// // func main(){
+// 	for i, arg := range os.Args[1:]{
+// 		fmt.Println(i,arg)
+// 	}
+// }
