@@ -1,9 +1,9 @@
 package main
 
 import (
-	"hello/github"
 	"html/template"
 	"net/http"
+	"tgopl/back/ch4/github"
 )
 
 func main() {
@@ -13,6 +13,7 @@ func main() {
 
 func handle(w http.ResponseWriter, r *http.Request) {
 	var result *github.IssuesSearchResult
+
 	var keywords = []string{"php", "js"}
 	result, _ = github.SearchIssue(keywords)
 

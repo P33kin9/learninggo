@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"hello/github"
 	"log"
 	"os"
+	"tgopl/back/ch4/github"
 )
 
 func main() {

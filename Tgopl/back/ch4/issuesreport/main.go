@@ -1,7 +1,7 @@
 package main
 
 import (
-	"hello/github"
+	"tgopl/back/ch4/github"
 	"html/template"
 	"log"
 	"os"
