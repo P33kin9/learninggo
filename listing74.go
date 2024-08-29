@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"entities/entities"
+	"worktest/entities"
 )
 
 func main() {

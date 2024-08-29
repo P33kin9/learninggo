@@ -7,7 +7,7 @@ import (
 	"os"
 	"runtime/debug"
 
-	"chatbot/chatbot"
+	"worktest/chatbot/chatbot"
 )
 
 var chatbotName string
